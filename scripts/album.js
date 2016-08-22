@@ -146,5 +146,5 @@ var clickHandler = function (targetElement) {
              // Event handler call
              clickHandler(event.target);
          });
-     };
- };
+    };
+};

@@ -1,34 +1,36 @@
-var pointsArray = document.getElementsByClassName("point");
 
+//create animatePoints function which will animate the
+//selling points at the bottom of the page.
 
-var animatePoints = function (points) {
-     
-    var revealPoint = function (index) {
-        points[index].style.opacity = 1;
-        points[index].style.transform = "scaleX(1) translateY(0)";
-        points[index].style.msTransform = "scaleX(1)    translateY(0)";
-        points[index].style.WebkitTransform = "scaleX(1) translateY(0)";
-    };      
-    for (var i=0; i < points.length; i++) {
-        revealPoint(i)
+var animatePoints = function () {
+    
+    var revealPoint = function () {
+        $(this).css({
+            opacity: 1,
+            transform: "scaleX(1) translateY(0)"
+        });
     };
+    
+    $.each($(".point"), revealPoint);
 };
 
- window.onload = function() {
-     
-     if (window.innerHeight > 950) {
-         animatePoints(pointsArray);
+ $(window).load(function (){    
+     //animate selling-points if window height > 950
+     if ($(window).height() > 950) {
+         animatePoints();
      }
+    
+     //set how much to scroll down so user doesn't miss the animation
+     var scrollDistance = $(".selling-points").offset().top - $(window).height() + 200;
      
-     var sellingPoints = document.getElementsByClassName("selling-points")[0];
-     var scrollDistance = sellingPoints.getBoundingClientRect().top - window.innerHeight + 200;
 
-     window.addEventListener("scroll", function(event) {
-        if (document.documentElement.scrollTop || document.body.scrollTop >= scrollDistance) {
-             animatePoints(pointsArray);
-        }
+     $(window).scroll(function(event) {
+        //trigger animatePoints() if user scrolls down enough
+        if ($(window).scrollTop() >= scrollDistance) {
+            animatePoints();
+            }
      });
- }
+ });
  
  
  
