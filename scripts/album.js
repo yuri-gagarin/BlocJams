@@ -47,7 +47,7 @@ var setSong = function(songNumber) {
     currentSongFromAlbum = currentAlbum.songs[songNumber - 1];
     
     currentSoundFile = new buzz.sound(currentSongFromAlbum.audioUrl, {
-         // #2
+         //create a new sound file from the library
          formats: [ 'mp3' ],
          preload: true
      });
@@ -124,7 +124,7 @@ var createSongRow = function(songNumber, songName, songLength) {
         if (songNumber !== currentlyPlayingSongNumber) {
             songNumberCell.html(playButtonTemplate);
         }
-        console.log("songNumber type is " + typeof songNumber + "\n and currentlyPlayingSongNumber type is " + typeof currentlyPlayingSongNumber);
+        
 
     };
     // listens for when mouse pointer leaves element
@@ -188,13 +188,15 @@ var updateSeekPercentage = function($seekBar, seekBarFillRatio) {
  };
 
 var updateSeekBarWhileSongPlays = function() {
-     if (currentSoundFile) {
+ 
+    if (currentSoundFile) {
          // #10
          currentSoundFile.bind('timeupdate', function(event) {
              // #11
+             
              var seekBarFillRatio = this.getTime() / this.getDuration();
+             
              var $seekBar = $('.seek-control .seek-bar');
- 
              updateSeekPercentage($seekBar, seekBarFillRatio);
          });
      }
@@ -203,16 +205,17 @@ var updateSeekBarWhileSongPlays = function() {
 
 
 var setupSeekBars = function() {
+     //find the see-bar within player bar
      var $seekBars = $('.player-bar .seek-bar');
  
      $seekBars.click(function(event) {
-         // #3
+         //set a property to offsetX, x coordinate
          var offsetX = event.pageX - $(this).offset().left;
          var barWidth = $(this).width();
-         // #4
+         //calculate the fill ratio
          var seekBarFillRatio = offsetX / barWidth;
  
-         // #5
+         //
          
          if ($(this).parent().attr('class') == 'seek-control') {
             seek(seekBarFillRatio * currentSoundFile.getDuration());
@@ -221,11 +224,11 @@ var setupSeekBars = function() {
         }
          updateSeekPercentage($(this), seekBarFillRatio);
      });
+    //find the .thumb and add an event listener
     $seekBars.find('.thumb').mousedown(function(event) {
-         // #8
+         //find immediate parent of the node to differentiate between volume and seek
          var $seekBar = $(this).parent();
- 
-         // #9
+         // create an event listener to move the seekbars while pressing mouse
          $(document).bind('mousemove.thumb', function(event){
              var offsetX = event.pageX - $seekBar.offset().left;
              var barWidth = $seekBar.width();
@@ -240,7 +243,7 @@ var setupSeekBars = function() {
              updateSeekPercentage($seekBar, seekBarFillRatio);
          });
  
-         // #10
+         //unbinded once mouse button is let go
          $(document).bind('mouseup.thumb', function() {
              $(document).unbind('mousemove.thumb');
              $(document).unbind('mouseup.thumb');
