@@ -13,7 +13,6 @@ var currentSoundFile = null;
 
 var $previousButton = $('.main-controls .previous');
 var $nextButton = $('.main-controls .next');
-var $playerBarPlayPause = $('.main-controls .play-pause');
 var $playPauseButton = $('.main-controls .play-pause');
 
 var updatePlayerBarSong = function() {
@@ -338,6 +337,7 @@ var togglePlayFromPlayerBar = function() {
 
 var togglePlayFromPlayerbar = function() {
      var $currentlyPlayingCell = getSongNumberCell(currentlyPlayingSongNumber);
+     console.log($currentlyPlayingCell);
      if (currentSoundFile.isPaused()) {
          $currentlyPlayingCell.html(pauseButtonTemplate);
          $(this).html(playerBarPauseButton);
@@ -357,6 +357,5 @@ var togglePlayFromPlayerbar = function() {
      setupSeekBars();
      $previousButton.click(previousSong);
      $nextButton.click(nextSong);
-     $playerBarPlayPause.click(togglePlayFromPlayerBar);
      $playPauseButton.click(togglePlayFromPlayerbar);
 });
