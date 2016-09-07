@@ -13,11 +13,8 @@ var currentSoundFile = null;
 
 var $previousButton = $('.main-controls .previous');
 var $nextButton = $('.main-controls .next');
-<<<<<<< HEAD
 var $playerBarPlayPause = $('.main-controls .play-pause');
-=======
 var $playPauseButton = $('.main-controls .play-pause');
->>>>>>> Checkpoint-21-jQuery/SeekBars
 
 var updatePlayerBarSong = function() {
     
@@ -318,7 +315,6 @@ var previousSong = function() {
 
 };
 
-<<<<<<< HEAD
 var togglePlayFromPlayerBar = function() {
     var $currentPlayingCell = getSongNumberCell(currentlyPlayingSongNumber);
     
@@ -336,7 +332,7 @@ var togglePlayFromPlayerBar = function() {
         currentSoundFile.pause()
     }
 }
-=======
+
 var togglePlayFromPlayerbar = function() {
      var $currentlyPlayingCell = getSongNumberCell(currentlyPlayingSongNumber);
      if (currentSoundFile.isPaused()) {
@@ -351,7 +347,6 @@ var togglePlayFromPlayerbar = function() {
  };
 
 
->>>>>>> Checkpoint-21-jQuery/SeekBars
 
 //set the album when document loads
  $(document).ready(function() {
@@ -359,9 +354,6 @@ var togglePlayFromPlayerbar = function() {
      setupSeekBars();
      $previousButton.click(previousSong);
      $nextButton.click(nextSong);
-<<<<<<< HEAD
      $playerBarPlayPause.click(togglePlayFromPlayerBar);
-=======
      $playPauseButton.click(togglePlayFromPlayerbar);
->>>>>>> Checkpoint-21-jQuery/SeekBars
 });
