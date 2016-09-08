@@ -185,7 +185,6 @@ var setCurrentTimeInPlayerBar = function(currentTime) {
 var setTotalTimeInPlayerBar = function(totalTime) {
     var $totalTimeElement = $('.seek-control .total-time');
     $totalTimeElement.text(totalTime);
-    console.log(totalTime);
 };
 
 var filterTimeCode = function(timeInSeconds) {
@@ -222,7 +221,7 @@ var updateSeekBarWhileSongPlays = function() {
     if (currentSoundFile) {
          //check if the file is playing
          currentSoundFile.bind('timeupdate', function(event) {
-             // #11
+             //get current time and songLength
              
              var currentTime = this.getTime();
              var songLength = this.getDuration();
@@ -230,8 +229,9 @@ var updateSeekBarWhileSongPlays = function() {
              var $seekBar = $('.seek-control .seek-bar');
 
              updateSeekPercentage($seekBar, seekBarFillRatio);
-             setTotalTimeInPlayerBar(filterTimeCode(currentSongFromAlbum.duration));
-             console.log(currentSongFromAlbum.duration);
+             setCurrentTimeInPlayerBar(filterTimeCode(currentTime));
+             setTotalTimeInPlayerBar(filterTimeCode(songLength));
+             
          });
      }
  };
