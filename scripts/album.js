@@ -1,3 +1,4 @@
+console.log('test');
 var albumPicasso = {
      title: 'The Colors',
      artist: 'Pablo Picasso',
@@ -55,13 +56,13 @@ var createSongRow = function(songNumber, songName, songLength) {
 	if (currentlyPlayingSong !== songNumber) {
 		// Switch from Play -> Pause button to indicate new song is playing.
 		$(this).html(pauseButtonTemplate);
-		currentlyPlayingSong = songNumber;
+		currentlyPlayingSong == songNumber;
 	} else if (currentlyPlayingSong === songNumber) {
 		// Switch from Pause -> Play button to pause currently playing song.
 		$(this).html(playButtonTemplate);
 		currentlyPlayingSong = null;
     }
-    };
+    }
     
     //listesn to hover event
     var onHover = function(event) {
@@ -118,7 +119,7 @@ var setCurrentAlbum = function(album) {
          $albumSongList.append($newRow);
          
      }
- };
+ 
  
 
 var playButtonTemplate = '<a class="album-song-button"><span class="ion-play"></span></a>';
@@ -127,9 +128,6 @@ var pauseButtonTemplate = '<a class="album-song-button"><span class="ion-pause">
 
 
 var currentlyPlayingSong = null;
-
-
-
 
 
 //set the album when document loads
